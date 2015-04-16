@@ -1,5 +1,11 @@
-" Setup the google plugin vim support
-source /usr/share/vim/google/google.vim
+if filereadable("/usr/share/vim/google/google.vim")
+  source /usr/share/vim/google/google.vim
+  Glug gtimporter
+  Glug gtags
+  Glug blaze plugin[mappings]='<leader>b'
+  Glug corpweb
+  Glug youcompleteme-google
+endif 
 
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -25,12 +31,6 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-" Solarized changes
-set t_Co=256
-set background=dark
-let g:solarized_termcolors=256
-colorscheme solarized
-
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -50,10 +50,16 @@ Plugin 'dart-lang/dart-vim-plugin'
 Plugin 'kien/ctrlp.vim'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'bling/vim-airline'
+Plugin 'altercation/vim-colors-solarized'
 
 call vundle#end()
 filetype plugin indent on    " required
 
+" Solarized changes
+set t_Co=256
+set background=dark
+let g:solarized_termcolors=256
+colorscheme solarized
 
 " ctrlP settings
 let g:ctrlp_command = 'CtrlPMixed'
@@ -73,9 +79,4 @@ nmap <C-o> :CtrlPLine<CR>
 " ctrlP settings to work in google 3
 let g:ctrlp_directories = map(['google3/contentads/xbid'], 'piperlib#GetRootDir() . v:val')
 
-Glug gtimporter
-Glug gtags
-Glug blaze plugin[mappings]='<leader>b'
-Glug corpweb
-Glug youcompleteme-google
 
